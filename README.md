@@ -1,44 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# fully-testable-react-hooks
 
-## Available Scripts
+Good practices implementation example for fully-testable hooks and view components on a React project
 
-In the project directory, you can run:
+**TL;DR** the essential implementation considerations on this example, from hooks to view components, are the following:
 
-### `yarn start`
+- on a **view component implementation**, it must have no more than a **single entry point**. the entry point can be the component's own custom hook with multiple entry points
+- on a **view component test implementation**, it is the **assignment of mocked values to the single entry point(hook) return values**
+- on a **hook test implementation**, any **return value of the custom hook must have its own test block**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## implementation of testable view components
 
-### `yarn test`
+- on a **view component** **implementation**, it must have at max a** single entry point**. - this results in less effort on the test implementation, specially because there will be only a single entry point to be mocked. - generally, to achieve this, **the view component can have its own custom hook**, making it the only entry point. the custom hook can then have as many entry points as necessary
+- on a **view component test implementation**, the only consideration applied here is to the first step(assignment) of the feature steps(given -> when -> then). it is the **assignment of mocked values to the single entry point(hook) return values**. the next steps can be implemented with any usual techniques, as long as the component can be simulated with this assignment
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## implementation of hook tests
 
-### `yarn build`
+- on a **hook test implementation**, all the **return values of the custom hook must have its own \*\***`describe`\***\* block**, and the hook name itself serves just as a `describe` wrapper block
+  - the primitive value(s) `describe` block(s) can be easily covered by validating the default value
+  - inside a hook **event handler** `describe` block(s), there must be **one \*\***`it`\***\* block** **for each branching element** that exists on the source function logic(i.e. `if` conditions), for a properly test branching coverage
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## installation
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- clone the repository
+- run `yarn && yarn start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## features
 
-### `yarn eject`
+Behavior-driven development features of this project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```plaintext
+Feature: Create Note
+  Given There is 0 notes
+  When A note is created with the title "Learning technology is cool"
+  Then Expect to have 1 note with title "Learning technology is cool"
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```plaintext
+Feature: Read Notes
+  Given There is 2 notes
+  When The notes listing is accessed
+  Then Expect to see 2 notes
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```plaintext
+Feature: Update Note title
+  Given There is a note with title "I bought fruit today"
+  When The title of the note "I bought fruit today" is changed to "Buy fruit tomorrow"
+  Then Expect to have a note with title "Buy fruit tomorrow"
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```plaintext
+Feature: Delete Note
+  Given There is 2 notes
+  When One note is deleted
+  Then Expect to have only 1 note
+```
