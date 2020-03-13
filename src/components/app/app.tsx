@@ -1,41 +1,21 @@
 import React from "react"
-import { createGlobalStyle } from "styled-components"
+import styled from "styled-components"
 
+import { GlobalStyle } from "../../styles/global-style"
 import { Notes } from "../notes/notes"
 
-const GlobalStyle = createGlobalStyle`
-  *,
-	*:before,
-	*:after {
- 		box-sizing: inherit;
-  }
-  
-  html, body {
-    display: flex;
-    min-height: 100%;
-  }
-
-  html {
-		box-sizing: border-box;
-  }
-
-	body {
-		margin: 0;
-		padding: 0;
-    font-family: Helvetica, Arial, sans-serif;
-    flex: 1 100%;
-  }
-
-  #root {
-    flex: 1 100%;
-  }
+const StyledContainer = styled.div`
+  margin: 0 auto;
+  max-width: 480px;
 `
 
 export const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
-      <Notes />
+      <StyledContainer>
+        <Notes />
+      </StyledContainer>
     </>
   )
 }
