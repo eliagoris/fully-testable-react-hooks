@@ -67,4 +67,28 @@ describe("useNotes", function() {
       expect(expectedNote).toBeTruthy()
     })
   })
+
+  /**
+   * Feature: Delete Note
+   */
+  describe("handleDeleteNote", function() {
+    it("Should delete a note from the notes array", function() {
+      const {
+        result: {
+          current: { notes, handleAddNote, handleDeleteNote }
+        }
+      } = renderHook(() => useNotes())
+
+      /** Given There is 2 notes */
+      act(() => handleAddNote({ title: "Very nice Note" }))
+      act(() => handleAddNote({ title: "Another Note" }))
+
+      /** When One note is deleted */
+      const { id } = notes[0]
+      act(() => handleDeleteNote({ id }))
+
+      /** Then Expect to have only 1 note */
+      expect(notes).toHaveLength(1)
+    })
+  })
 })
