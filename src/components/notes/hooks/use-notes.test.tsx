@@ -62,6 +62,33 @@ describe("useNotes", function() {
       )
       expect(expectedNote).toBeTruthy()
     })
+
+    /**
+     * Another block for testing the handleUpdateNote function branching
+     */
+    it("Should not update notes if there is no note with the given id", function() {
+      const { result } = renderHook(() => useNotes())
+
+      /** Given There is a note with title "I bought fruit today" */
+      const fromTitle = "I bought fruit today"
+      act(() => result.current.handleAddNote({ title: fromTitle }))
+
+      /** When Try to update a note that doesn't exist */
+      const toTitle = "Buy fruit tomorrow"
+      const noteToChange = result.current.notes.find(
+        ({ title }: Note) => title === "This title doesn't exist"
+      )
+
+      act(() =>
+        result.current.handleUpdateNote(noteToChange?.id, { title: toTitle })
+      )
+
+      /** Then Expect to see the same note */
+      const expectedNote = result.current.notes.find(
+        ({ title }: Note) => title === fromTitle
+      )
+      expect(expectedNote).toBeTruthy()
+    })
   })
 
   /**
