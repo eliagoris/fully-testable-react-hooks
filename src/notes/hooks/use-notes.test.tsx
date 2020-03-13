@@ -29,15 +29,42 @@ describe("useNotes", function() {
 
       /** A note is created with the title "Learning technology is cool"  */
       const expectedTitle = "Learning technology is cool"
-      act(function() {
-        handleAddNote({ expectedTitle })
-      })
+      act(() => handleAddNote({ expectedTitle }))
 
       /** Then Expect to have 1 note with title "Learning technology is cool" */
       const createdNote: Note = notes.find(
         ({ title }: Note) => title === expectedTitle
       )
       expect(createdNote).toBeTruthy()
+    })
+  })
+
+  /**
+   * Feature: Update Note
+   */
+  describe("handleUpdateNote", function() {
+    it("Should update a note from the notes array", function() {
+      const {
+        result: {
+          current: { notes, handleUpdateNote, handleAddNote }
+        }
+      } = renderHook(() => useNotes())
+
+      /** Given There is a note with title "I bought fruit today" */
+      const fromTitle = "I bought fruit today"
+      act(() => handleAddNote({ fromTitle }))
+
+      /** When The title of the note "I bought fruit today" is changed to "Buy fruit tomorrow" */
+      const toTitle = "Buy fruit tomorrow"
+      const noteToChange = notes.find(({ title }: Note) => title === fromTitle)
+      const { id } = noteToChange
+      act(() => handleUpdateNote(id, { title: toTitle }))
+
+      /** Then Expect to have a note with title "Buy fruit tomorrow" */
+      const expectedNote: Note = notes.find(
+        ({ title }: Note) => title === toTitle
+      )
+      expect(expectedNote).toBeTruthy()
     })
   })
 })

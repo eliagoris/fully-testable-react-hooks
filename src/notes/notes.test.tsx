@@ -39,6 +39,9 @@ describe("Notes", function() {
     expect(ADD_NOTE_HANDLER)
   })
 
+  /**
+   * Feature: Read Notes
+   */
   it("Allows the user to read notes", function() {
     const HOOK_SPY: jest.SpyInstance<any, unknown[]> = jest.spyOn(
       { useNotes },
