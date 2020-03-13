@@ -21,18 +21,14 @@ describe("useNotes", function() {
   describe("handleAddNote", function() {
     it("Should add a note to the notes array", function() {
       /** Given There is 0 notes */
-      const {
-        result: {
-          current: { notes, handleAddNote }
-        }
-      } = renderHook(() => useNotes())
+      const { result } = renderHook(() => useNotes())
 
       /** A note is created with the title "Learning technology is cool"  */
       const expectedTitle = "Learning technology is cool"
-      act(() => handleAddNote({ title: expectedTitle }))
+      act(() => result.current.handleAddNote({ title: expectedTitle }))
 
       /** Then Expect to have 1 note with title "Learning technology is cool" */
-      const createdNote = notes.find(
+      const createdNote = result.current.notes.find(
         ({ title }: Note) => title === expectedTitle
       )
       expect(createdNote).toBeTruthy()
@@ -44,24 +40,26 @@ describe("useNotes", function() {
    */
   describe("handleUpdateNote", function() {
     it("Should update a note from the notes array", function() {
-      const {
-        result: {
-          current: { notes, handleUpdateNote, handleAddNote }
-        }
-      } = renderHook(() => useNotes())
+      const { result } = renderHook(() => useNotes())
 
       /** Given There is a note with title "I bought fruit today" */
       const fromTitle = "I bought fruit today"
-      act(() => handleAddNote({ title: fromTitle }))
+      act(() => result.current.handleAddNote({ title: fromTitle }))
 
       /** When The title of the note "I bought fruit today" is changed to "Buy fruit tomorrow" */
       const toTitle = "Buy fruit tomorrow"
-      const noteToChange = notes.find(({ title }: Note) => title === fromTitle)
+      const noteToChange = result.current.notes.find(
+        ({ title }: Note) => title === fromTitle
+      )
 
-      act(() => handleUpdateNote(noteToChange?.id, { title: toTitle }))
+      act(() =>
+        result.current.handleUpdateNote(noteToChange?.id, { title: toTitle })
+      )
 
       /** Then Expect to have a note with title "Buy fruit tomorrow" */
-      const expectedNote = notes.find(({ title }: Note) => title === toTitle)
+      const expectedNote = result.current.notes.find(
+        ({ title }: Note) => title === toTitle
+      )
       expect(expectedNote).toBeTruthy()
     })
   })
@@ -71,22 +69,18 @@ describe("useNotes", function() {
    */
   describe("handleDeleteNote", function() {
     it("Should delete a note from the notes array", function() {
-      const {
-        result: {
-          current: { notes, handleAddNote, handleDeleteNote }
-        }
-      } = renderHook(() => useNotes())
+      const { result } = renderHook(() => useNotes())
 
       /** Given There is 2 notes */
-      act(() => handleAddNote({ title: "Very nice Note" }))
-      act(() => handleAddNote({ title: "Another Note" }))
+      act(() => result.current.handleAddNote({ title: "Very nice Note" }))
+      act(() => result.current.handleAddNote({ title: "Another Note" }))
 
       /** When One note is deleted */
-      const { id } = notes[0]
-      act(() => handleDeleteNote({ id }))
+      const { id } = result.current.notes[0]
+      act(() => result.current.handleDeleteNote({ id }))
 
       /** Then Expect to have only 1 note */
-      expect(notes).toHaveLength(1)
+      expect(result.current.notes).toHaveLength(1)
     })
   })
 })
