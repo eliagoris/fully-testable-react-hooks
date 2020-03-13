@@ -33,12 +33,7 @@ describe("Notes", function() {
     const form: HTMLElement = getByTestId("notes-form")
 
     /** When The form is submitted */
-    const title: string = "Learning technology is cool"
-    fireEvent.submit(form, {
-      target: {
-        title
-      }
-    })
+    fireEvent.submit(form)
 
     /** Then Expect that the add note handler has been called */
     expect(ADD_NOTE_HANDLER)
