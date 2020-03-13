@@ -43,4 +43,24 @@ describe("Notes", function() {
     /** Then Expect that the add note handler has been called */
     expect(ADD_NOTE_HANDLER)
   })
+
+  it("Allows the user to read notes", function() {
+    const HOOK_SPY: jest.SpyInstance<any, unknown[]> = jest.spyOn(
+      { useNotes },
+      "useNotes"
+    )
+
+    /** Given There is 2 notes */
+    HOOK_SPY.mockReturnValue({
+      notes: mockedNotes
+    })
+
+    /** When The notes view is rendered */
+    const { getByText } = render(<Notes />)
+
+    /** Then Expect to see the notes */
+    mockedNotes.forEach(function({ title }) {
+      getByText(title)
+    })
+  })
 })
