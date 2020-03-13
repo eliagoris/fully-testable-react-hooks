@@ -63,4 +63,52 @@ describe("Notes", function() {
       getByText(title)
     })
   })
+
+  it("Allows the user to update notes", function() {
+    const HOOK_SPY: jest.SpyInstance<any, unknown[]> = jest.spyOn(
+      { useNotes },
+      "useNotes"
+    )
+    const UPDATE_NOTE_HANDLER: jest.Mock<any, any> = jest.fn()
+
+    /** Given There is 2 notes */
+    HOOK_SPY.mockReturnValue({
+      notes: mockedNotes,
+      handleUpdateNote: UPDATE_NOTE_HANDLER
+    })
+
+    /** And The notes view is rendered */
+    const { getAllByTestId } = render(<Notes />)
+
+    /** When An edit button is clicked */
+    const button = getAllByTestId("edit-note-button")[0]
+    fireEvent.click(button)
+
+    /** Then Expect the update note handler to be called */
+    expect(UPDATE_NOTE_HANDLER).toBeCalled()
+  })
+
+  it("Allows the user to delete notes", function() {
+    const HOOK_SPY: jest.SpyInstance<any, unknown[]> = jest.spyOn(
+      { useNotes },
+      "useNotes"
+    )
+    const DELETE_NOTE_HANDLER: jest.Mock<any, any> = jest.fn()
+
+    /** Given There is 2 notes */
+    HOOK_SPY.mockReturnValue({
+      notes: mockedNotes,
+      handleDeleteNote: DELETE_NOTE_HANDLER
+    })
+
+    /** And The notes view is rendered */
+    const { getAllByTestId } = render(<Notes />)
+
+    /** When A delete button is clicked */
+    const button = getAllByTestId("edit-note-button")[0]
+    fireEvent.click(button)
+
+    /** Then Expect the delete note handler to be called */
+    expect(DELETE_NOTE_HANDLER).toBeCalled()
+  })
 })
