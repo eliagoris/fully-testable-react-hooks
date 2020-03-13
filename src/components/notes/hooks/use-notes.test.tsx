@@ -29,10 +29,10 @@ describe("useNotes", function() {
 
       /** A note is created with the title "Learning technology is cool"  */
       const expectedTitle = "Learning technology is cool"
-      act(() => handleAddNote({ expectedTitle }))
+      act(() => handleAddNote({ title: expectedTitle }))
 
       /** Then Expect to have 1 note with title "Learning technology is cool" */
-      const createdNote: Note = notes.find(
+      const createdNote = notes.find(
         ({ title }: Note) => title === expectedTitle
       )
       expect(createdNote).toBeTruthy()
@@ -52,18 +52,16 @@ describe("useNotes", function() {
 
       /** Given There is a note with title "I bought fruit today" */
       const fromTitle = "I bought fruit today"
-      act(() => handleAddNote({ fromTitle }))
+      act(() => handleAddNote({ title: fromTitle }))
 
       /** When The title of the note "I bought fruit today" is changed to "Buy fruit tomorrow" */
       const toTitle = "Buy fruit tomorrow"
       const noteToChange = notes.find(({ title }: Note) => title === fromTitle)
-      const { id } = noteToChange
-      act(() => handleUpdateNote(id, { title: toTitle }))
+
+      act(() => handleUpdateNote(noteToChange?.id, { title: toTitle }))
 
       /** Then Expect to have a note with title "Buy fruit tomorrow" */
-      const expectedNote: Note = notes.find(
-        ({ title }: Note) => title === toTitle
-      )
+      const expectedNote = notes.find(({ title }: Note) => title === toTitle)
       expect(expectedNote).toBeTruthy()
     })
   })
