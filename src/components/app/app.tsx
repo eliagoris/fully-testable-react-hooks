@@ -1,7 +1,7 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 
-import { GlobalStyle } from "../../styles/global-style"
+import { GlobalStyle, theme } from "../../styles"
 import { Notes } from "../notes/notes"
 
 const StyledContainer = styled.div`
@@ -12,10 +12,13 @@ const StyledContainer = styled.div`
 export const App: React.FC = () => {
   return (
     <>
-      <GlobalStyle />
-      <StyledContainer>
-        <Notes />
-      </StyledContainer>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+
+        <StyledContainer>
+          <Notes />
+        </StyledContainer>
+      </ThemeProvider>
     </>
   )
 }
