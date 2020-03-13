@@ -18,9 +18,16 @@ function useNotes() {
     )
   }
 
+  const handleUpdateNote = function(id: string | undefined, updates: Note) {
+    setNotes(prevNotes =>
+      prevNotes.map(note => (note.id === id ? { ...note, ...updates } : note))
+    )
+  }
+
   return {
     notes,
-    handleAddNote
+    handleAddNote,
+    handleUpdateNote
   }
 }
 
