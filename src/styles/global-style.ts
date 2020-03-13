@@ -3,6 +3,9 @@ import { createGlobalStyle } from "styled-components"
 export const GlobalStyle = createGlobalStyle(res => {
   const {
     theme: {
+      settings: {
+        small: { size }
+      },
       color: { base, baseBackground }
     }
   } = res
@@ -21,6 +24,7 @@ export const GlobalStyle = createGlobalStyle(res => {
   
   html {
     box-sizing: border-box;
+    font-size: 62.5%;
   }
   
   body {
@@ -28,8 +32,10 @@ export const GlobalStyle = createGlobalStyle(res => {
     padding: 0;
     font-family: Helvetica, Arial, sans-serif;
     flex: 1 100%;
-    background: ${baseBackground}
-    color: ${base}
+    background: ${baseBackground};
+    color: ${base};
+    font-size: ${size};
+    line-height: ${size};
   }
   
   #root {
