@@ -104,7 +104,7 @@ describe("useNotes", function() {
 
       /** When One note is deleted */
       const { id } = result.current.notes[0]
-      act(() => result.current.handleDeleteNote({ id }))
+      act(() => result.current.handleDeleteNote(id))
 
       /** Then Expect to have only 1 note */
       expect(result.current.notes).toHaveLength(1)

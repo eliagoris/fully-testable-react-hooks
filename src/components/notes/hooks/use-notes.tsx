@@ -24,10 +24,15 @@ function useNotes() {
     )
   }
 
+  const handleDeleteNote = function(id: string | undefined) {
+    setNotes(prevNotes => prevNotes.filter(note => note.id !== id))
+  }
+
   return {
     notes,
     handleAddNote,
-    handleUpdateNote
+    handleUpdateNote,
+    handleDeleteNote
   }
 }
 
