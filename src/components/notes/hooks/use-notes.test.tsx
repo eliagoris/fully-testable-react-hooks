@@ -11,7 +11,7 @@ describe("useNotes", function() {
           current: { notes }
         }
       } = renderHook(() => useNotes())
-      expect(notes).toBe([])
+      expect(notes).toStrictEqual([])
     })
   })
 
