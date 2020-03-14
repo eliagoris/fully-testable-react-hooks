@@ -1,6 +1,6 @@
 # fully-testable-react-hooks
 
-[![Coverage Status](https://coveralls.io/repos/github/edusorcerer/fully-testable-react-hooks/badge.svg)](https://coveralls.io/github/edusorcerer/fully-testable-react-hooks)
+[![Coverage Status](https://coveralls.io/repos/github/edusorcerer/fully-testable-react-hooks/badge.svg)](https://coveralls.io/github/edusorcerer/fully-testable-react-hooks) [![Build Status](https://travis-ci.org/edusorcerer/fully-testable-react-hooks.svg?branch=master)](https://travis-ci.org/edusorcerer/fully-testable-react-hooks)
 
 Good practices implementation example for fully-testable hooks and view components on a React project
 
