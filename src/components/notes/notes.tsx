@@ -2,6 +2,13 @@ import React from "react"
 import styled from "styled-components"
 
 import { useNotes } from "./hooks/use-notes"
+import Text from "../text/text"
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 100%;
+`
 
 const StyledInput = styled.input(({ theme }) => {
   const {
@@ -10,6 +17,15 @@ const StyledInput = styled.input(({ theme }) => {
 
   return `
     border-bottom: 1px solid ${link}
+  `
+})
+
+const StyledTitle = styled(Text)(({ theme }) => {
+  const {
+    color: { special }
+  } = theme
+  return `
+    border-bottom: 1px solid ${special}
   `
 })
 
@@ -30,8 +46,8 @@ export const Notes: React.FC = () => {
   }
 
   return (
-    <>
-      <h1>Notes</h1>
+    <StyledWrapper>
+      <StyledTitle size="large">Notes</StyledTitle>
 
       {notes.map(({ id, title }) => (
         <p key={id}>{title}</p>
@@ -43,8 +59,7 @@ export const Notes: React.FC = () => {
           name="title"
           placeholder="write a note here..."
         />
-        <button type="submit">add</button>
       </form>
-    </>
+    </StyledWrapper>
   )
 }

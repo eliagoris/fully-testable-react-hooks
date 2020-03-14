@@ -17,6 +17,7 @@ declare module "styled-components" {
       small: TypoSetting
       medium: TypoSetting
       large: TypoSetting
+      [key: string]: TypoSetting
       desktop_breakpoint: string
     }
   }
