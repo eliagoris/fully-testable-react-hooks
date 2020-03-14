@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:coverage": "yarn test --collectCoverage=true --watchAll",
+    "test:coverage": "yarn test --collectCoverage=true --watchAll=false",
     "coveralls": "yarn test:coverage --w && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {

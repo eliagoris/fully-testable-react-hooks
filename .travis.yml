@@ -11,5 +11,5 @@ cache:
 install:
   - yarn install
 script:
-  - yarn test
+  - yarn test:coverage
   - yarn run coveralls
