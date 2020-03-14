@@ -1,7 +1,8 @@
 import React from "react"
 import styled, { ThemeProvider } from "styled-components"
 
-import { GlobalStyle, theme } from "../../styles"
+import { GlobalStyle } from "../../styles/global-style"
+import { theme } from "../../styles/theme"
 import { Notes } from "../notes/notes"
 
 const StyledContainer = styled.div(({ theme }) => {
