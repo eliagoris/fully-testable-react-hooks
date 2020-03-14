@@ -7,7 +7,8 @@ import {
   StyledInput,
   StyledTitle,
   StyledNotesList,
-  StyledNotesListItem
+  StyledNotesListItem,
+  StyledListItemRightActions
 } from "./styles"
 import { EditIcon, DeleteIcon } from "../icons"
 
@@ -36,8 +37,10 @@ export const Notes: React.FC = () => {
           <StyledNotesListItem key={id}>
             {title}
 
-            <EditIcon />
-            <DeleteIcon />
+            <StyledListItemRightActions>
+              <EditIcon />
+              <DeleteIcon />
+            </StyledListItemRightActions>
           </StyledNotesListItem>
         ))}
       </StyledNotesList>

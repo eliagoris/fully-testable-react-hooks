@@ -54,10 +54,22 @@ const StyledNotesListItem = styled(Text)(({ theme }) => {
   `
 })
 
+const StyledListItemRightActions = styled.span`
+  display: flex;
+  margin-left: auto;
+
+  svg {
+    vertical-align: middle;
+    margin: 0 0.8rem;
+    cursor: pointer;
+  }
+`
+
 export {
   StyledWrapper,
   StyledInput,
   StyledTitle,
   StyledNotesList,
-  StyledNotesListItem
+  StyledNotesListItem,
+  StyledListItemRightActions
 }
