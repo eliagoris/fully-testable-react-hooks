@@ -8,12 +8,13 @@ import {
   StyledTitle,
   StyledNotesList,
   StyledNotesListItem,
-  StyledListItemRightActions
+  StyledListItemRightActions,
+  StyledActionItem
 } from "./styles"
 import { EditIcon, DeleteIcon } from "../icons"
 
 export const Notes: React.FC = () => {
-  const { notes, handleAddNote } = useNotes()
+  const { notes, handleAddNote, handleDeleteNote } = useNotes()
 
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -38,8 +39,12 @@ export const Notes: React.FC = () => {
             {title}
 
             <StyledListItemRightActions>
-              <EditIcon />
-              <DeleteIcon />
+              <StyledActionItem>
+                <EditIcon />
+              </StyledActionItem>
+              <StyledActionItem>
+                <DeleteIcon />
+              </StyledActionItem>
             </StyledListItemRightActions>
           </StyledNotesListItem>
         ))}

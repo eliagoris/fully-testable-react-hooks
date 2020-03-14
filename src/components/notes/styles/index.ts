@@ -57,11 +57,20 @@ const StyledNotesListItem = styled(Text)(({ theme }) => {
 const StyledListItemRightActions = styled.span`
   display: flex;
   margin-left: auto;
+`
+
+const StyledActionItem = styled.span`
+  display: flex;
+  margin: 0 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.4s linear;
 
   svg {
     vertical-align: middle;
-    margin: 0 0.8rem;
-    cursor: pointer;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 `
 
@@ -71,5 +80,6 @@ export {
   StyledTitle,
   StyledNotesList,
   StyledNotesListItem,
-  StyledListItemRightActions
+  StyledListItemRightActions,
+  StyledActionItem
 }
