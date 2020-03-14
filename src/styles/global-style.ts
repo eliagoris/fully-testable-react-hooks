@@ -41,5 +41,20 @@ export const GlobalStyle = createGlobalStyle(res => {
   #root {
     flex: 1 100%;
   }
+
+  input {
+    outline: none;
+    background: none;
+    border: none;
+    padding: .6rem 0;
+    text-indent: 1rem;
+    color: inherit;
+    font-size: inherit;
+    transition: all .4s cubic-bezier(1, 0.35, 0, 0.93);
+    
+    &:focus {
+      text-indent: 0;
+    }
+  }
   `
 })
