@@ -13,6 +13,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/styled-components": "^5.0.1",
     "@types/uuid": "^7.0.0",
+    "coveralls": "^3.0.9",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
@@ -24,8 +25,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --collectCoverage=true",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "test:coverage": "yarn test --collectCoverage=true --watchAll",
+    "coveralls": "yarn test:coverage --w && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "collectCoverageFrom": [
