@@ -7,7 +7,7 @@ import { Notes } from "../notes/notes"
 
 const StyledContainer = styled.div(({ theme }) => {
   const {
-    settings: { desktop_breakpoint }
+    breakpoints: { desktop }
   } = theme
 
   return `
@@ -15,7 +15,7 @@ const StyledContainer = styled.div(({ theme }) => {
     max-width: 42rem;
     padding: 8rem 1.5rem;
 
-    @media (min-width: ${desktop_breakpoint}) {
+    @media (min-width: ${desktop}) {
       padding: 8rem 3rem;
     }
   `
