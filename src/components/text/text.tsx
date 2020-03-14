@@ -19,9 +19,10 @@ const StyledText = styled.p<{ selectedSize: Size }>(
     } = theme
 
     return `
-    font-size: ${size};
-    line-height: ${line_height};
-    color: ${selectedSize === "large" ? special : "inherit"}
+      margin: 0;
+      font-size: ${size};
+      line-height: ${line_height};
+      color: ${selectedSize === "large" ? special : "inherit"}
   `
   }
 )

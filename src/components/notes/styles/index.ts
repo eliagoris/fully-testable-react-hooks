@@ -10,21 +10,29 @@ const StyledWrapper = styled.div`
 
 const StyledInput = styled.input(({ theme }) => {
   const {
-    color: { link }
+    color: { link },
+    settings: {
+      large: { size }
+    }
   } = theme
 
   return `
+    margin: ${size};
     border-bottom: 1px solid ${link}
   `
 })
 
 const StyledTitle = styled(Text)(({ theme }) => {
   const {
-    color: { special }
+    color: { special },
+    settings: {
+      medium: { size }
+    }
   } = theme
   return `
-  flex: 1 100%;
-    border-bottom: 1px solid ${special}
+    flex: 1 100%;
+    border-bottom: 1px solid ${special};
+    text-indent: ${size}
   `
 })
 
@@ -32,4 +40,24 @@ const StyledNotesList = styled.div`
   flex: 1 100%;
 `
 
-export { StyledWrapper, StyledInput, StyledTitle, StyledNotesList }
+const StyledNotesListItem = styled(Text)(({ theme }) => {
+  const {
+    color: { special },
+    settings: {
+      medium: { size }
+    }
+  } = theme
+  return `
+    padding: .8rem;
+    border-bottom: 1px solid ${special};
+    text-indent: ${size}
+  `
+})
+
+export {
+  StyledWrapper,
+  StyledInput,
+  StyledTitle,
+  StyledNotesList,
+  StyledNotesListItem
+}

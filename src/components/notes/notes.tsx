@@ -6,7 +6,8 @@ import {
   StyledWrapper,
   StyledInput,
   StyledTitle,
-  StyledNotesList
+  StyledNotesList,
+  StyledNotesListItem
 } from "./styles"
 
 export const Notes: React.FC = () => {
@@ -31,7 +32,7 @@ export const Notes: React.FC = () => {
 
       <StyledNotesList>
         {notes.map(({ id, title }) => (
-          <p key={id}>{title}</p>
+          <StyledNotesListItem key={id}>{title}</StyledNotesListItem>
         ))}
       </StyledNotesList>
 
