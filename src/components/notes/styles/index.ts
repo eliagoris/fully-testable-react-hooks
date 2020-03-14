@@ -11,13 +11,11 @@ const StyledWrapper = styled.div`
 const StyledInput = styled.input(({ theme }) => {
   const {
     color: { link },
-    settings: {
-      large: { size }
-    }
+    settings: { medium, large }
   } = theme
 
   return `
-    margin: ${size};
+    margin: ${large.size} ${medium.size};
     border-bottom: 1px solid ${link}
   `
 })
@@ -48,7 +46,9 @@ const StyledNotesListItem = styled(Text)(({ theme }) => {
     }
   } = theme
   return `
-    padding: .8rem;
+    display: flex;
+    align-items: center;
+    padding: .8rem 0;
     border-bottom: 1px solid ${special};
     text-indent: ${size}
   `

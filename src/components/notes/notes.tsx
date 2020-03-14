@@ -9,6 +9,7 @@ import {
   StyledNotesList,
   StyledNotesListItem
 } from "./styles"
+import { EditIcon, DeleteIcon } from "../icons"
 
 export const Notes: React.FC = () => {
   const { notes, handleAddNote } = useNotes()
@@ -32,7 +33,12 @@ export const Notes: React.FC = () => {
 
       <StyledNotesList>
         {notes.map(({ id, title }) => (
-          <StyledNotesListItem key={id}>{title}</StyledNotesListItem>
+          <StyledNotesListItem key={id}>
+            {title}
+
+            <EditIcon />
+            <DeleteIcon />
+          </StyledNotesListItem>
         ))}
       </StyledNotesList>
 
