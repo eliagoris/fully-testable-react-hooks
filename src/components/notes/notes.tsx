@@ -14,7 +14,12 @@ import {
 import { EditIcon, DeleteIcon } from "../icons"
 
 export const Notes: React.FC = () => {
-  const { notes, handleAddNote, handleDeleteNote } = useNotes()
+  const {
+    notes,
+    handleAddNote,
+    handleDeleteNote,
+    handleUpdateNote
+  } = useNotes()
 
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -40,6 +45,20 @@ export const Notes: React.FC = () => {
     handleDeleteNote(id)
   }
 
+  function handleEditButtonClick(
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) {
+    const {
+      currentTarget: {
+        dataset: { id }
+      }
+    } = e
+
+    const title = "Nice edit ;)"
+
+    handleUpdateNote(id, { title })
+  }
+
   return (
     <StyledWrapper>
       <StyledTitle size="large">Notes</StyledTitle>
@@ -50,7 +69,11 @@ export const Notes: React.FC = () => {
             {title}
 
             <StyledListItemRightActions>
-              <StyledActionItem>
+              <StyledActionItem
+                data-id={id}
+                data-testid="edit-note-button"
+                onClick={handleEditButtonClick}
+              >
                 <EditIcon />
               </StyledActionItem>
               <StyledActionItem
@@ -70,6 +93,7 @@ export const Notes: React.FC = () => {
           id="title"
           name="title"
           placeholder="write a note here..."
+          required
         />
       </form>
     </StyledWrapper>
