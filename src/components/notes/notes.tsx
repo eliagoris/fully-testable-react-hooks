@@ -29,6 +29,17 @@ export const Notes: React.FC = () => {
     e.currentTarget.reset()
   }
 
+  function handleDeleteButtonClick(
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) {
+    const {
+      currentTarget: {
+        dataset: { id }
+      }
+    } = e
+    handleDeleteNote(id)
+  }
+
   return (
     <StyledWrapper>
       <StyledTitle size="large">Notes</StyledTitle>
@@ -42,7 +53,11 @@ export const Notes: React.FC = () => {
               <StyledActionItem>
                 <EditIcon />
               </StyledActionItem>
-              <StyledActionItem>
+              <StyledActionItem
+                data-id={id}
+                data-testid="delete-note-button"
+                onClick={handleDeleteButtonClick}
+              >
                 <DeleteIcon />
               </StyledActionItem>
             </StyledListItemRightActions>

@@ -106,7 +106,7 @@ describe("Notes", function() {
     const { getAllByTestId } = render(<Notes />)
 
     /** When A delete button is clicked */
-    const button = getAllByTestId("edit-note-button")[0]
+    const button = getAllByTestId("delete-note-button")[0]
     fireEvent.click(button)
 
     /** Then Expect the delete note handler to be called */
