@@ -14,14 +14,18 @@ Good practices implementation example for fully-testable hooks and view componen
 
 ## implementation of testable view components
 
-- on a **view component** **implementation**, it must have at max a** single entry point**. - this results in less effort on the test implementation, specially because there will be only a single entry point to be mocked. - generally, to achieve this, **the view component can have its own custom hook**, making it the only entry point. the custom hook can then have as many entry points as necessary
+- on a **view component** **implementation**, it must have at max a **single entry point**. - this results in less effort on the test implementation, specially because there will be only a single entry point to be mocked. - generally, to achieve this, **the view component can have its own custom hook**, making it the only entry point. the custom hook can then have as many entry points as necessary
+  - example: [Notes component](https://github.com/edusorcerer/fully-testable-react-hooks/blob/master/src/components/notes/notes.tsx)
 - on a **view component test implementation**, the only consideration applied here is to the first step(assignment) of the feature steps(given -> when -> then). it is the **assignment of mocked values to the single entry point(hook) return values**. the next steps can be implemented with any usual techniques, as long as the component can be simulated with this assignment
+  - example: [Notes component test](https://github.com/edusorcerer/fully-testable-react-hooks/blob/master/src/components/notes/notes.test.tsx)
 
 ## implementation of hook tests
 
-- on a **hook test implementation**, all the **return values of the custom hook must have its own \*\***`describe`\***\* block**, and the hook name itself serves just as a `describe` wrapper block
+- on a **hook test implementation**, all the **return values of the custom hook must have its own `describe` block**, and the hook name itself serves just as a `describe` wrapper block
   - the primitive value(s) `describe` block(s) can be easily covered by validating the default value
-  - inside a hook **event handler** `describe` block(s), there must be **one \*\***`it`\***\* block** **for each branching element** that exists on the source function logic(i.e. `if` conditions), for a properly test branching coverage
+  - inside a hook **event handler** `describe` block(s), there must be **one `it` block** **for each branching element** that exists on the source function logic(i.e. `if` conditions), for a properly test branching coverage
+  
+  - example: [useNotes hook test](https://github.com/edusorcerer/fully-testable-react-hooks/blob/master/src/components/notes/hooks/use-notes.test.tsx)
 
 ## installation
 
